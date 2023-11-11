@@ -23,7 +23,6 @@ export default class ProductManager {
     code = 0,
     stock = 0
   ) => {
-    console.log("tittle:", tittle);
     // valida que todos los campos del producto esten completos
     if (
       tittle === "" ||
