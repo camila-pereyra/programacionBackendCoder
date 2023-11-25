@@ -15,42 +15,38 @@ export default class ProductManager {
     }
   };
 
-  addProduct = async (
-    tittle = "",
-    description = "",
-    price = 0,
-    thumbnail = "",
-    code = 0,
-    stock = 0
-  ) => {
+  addProduct = async (product) => {
     // valida que todos los campos del producto esten completos
     if (
-      tittle === "" ||
-      description === "" ||
-      price === 0 ||
-      thumbnail === "" ||
-      code === 0 ||
-      stock === 0
+      !product.tittle ||
+      !product.description ||
+      !product.price ||
+      !product.code ||
+      !product.stock ||
+      !product.category
     ) {
-      return console.log(`Error: You must complete all product fields`);
+      return {
+        error: "El producto a agregar no tiene todos los campos obligatorios",
+      };
     }
     // valida si el producto existe dentro del array
-    const existsProduct = await this.getProductByCode(code);
+    const existsProduct = await this.getProductByCode(product.code);
     if (existsProduct != undefined) {
-      return console.log(
-        `Error: The product code.${code} already exists in the list`
-      );
+      return {
+        error: `El producto code ${product.code} que quiere agregar ya existe`,
+      };
     }
-    console.log(`Add product code.${code}...`);
     const productos = await this.getProducts();
     const productAdd = {
-      tittle: tittle,
-      description: description,
-      price: price,
-      thumbnail: thumbnail,
-      code: code,
-      stock: stock,
       id: productos.length === 0 ? 1 : productos[productos.length - 1].id + 1,
+      tittle: product.tittle,
+      description: product.description,
+      code: product.code,
+      price: product.price,
+      status: true,
+      stock: product.stock,
+      category: product.category,
+      thumbnail: product.thumbnail || "",
     };
     productos.push(productAdd);
     await fs.promises.writeFile(

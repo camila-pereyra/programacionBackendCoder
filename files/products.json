@@ -1,38 +1,35 @@
 [
 	{
-		"tittle": "Remera",
-		"description": "Deportiva",
-		"price": 15000,
-		"thumbnail": "remera.png",
-		"code": 150000,
-		"stock": 10,
-		"id": 1
-	},
-	{
-		"tittle": "Pantalon",
-		"description": "Deportivo",
-		"price": 20000,
-		"thumbnail": "pantalon.png",
-		"code": 150001,
-		"stock": 20,
-		"id": 2
-	},
-	{
-		"tittle": "Calza",
-		"description": "Termica",
-		"price": 18000,
-		"thumbnail": "calza.png",
-		"code": 150002,
-		"stock": 15,
-		"id": 3
-	},
-	{
+		"id": 1,
 		"tittle": "Campera",
-		"description": "Rompev",
-		"price": 30000,
-		"thumbnail": "campera.png",
-		"code": 150003,
+		"description": "Lisa",
+		"code": 1000,
+		"price": 50000,
+		"status": true,
+		"stock": 10,
+		"category": "abrigos",
+		"thumbnail": ""
+	},
+	{
+		"id": 2,
+		"tittle": "Remera",
+		"description": "Brillo",
+		"code": 1001,
+		"price": 20000,
+		"status": true,
 		"stock": 8,
-		"id": 4
+		"category": "fiesta",
+		"thumbnail": ""
+	},
+	{
+		"id": 3,
+		"tittle": "Camisa",
+		"description": "Cuadrille",
+		"code": 1002,
+		"price": 80000,
+		"status": true,
+		"stock": 15,
+		"category": "vestir",
+		"thumbnail": ""
 	}
 ]
