@@ -1,15 +1,17 @@
 import express from "express";
 import productsRouter from "./routes/products.router.js";
-//inicializamos puerto
+import cartsRouter from "./routes/carts.router.js";
+
 const PORT = 8080;
-//inicializamos express
 const app = express();
-//Middleware a nivel aplicacion
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//servidor escuchando en el puerto
+
 app.listen(PORT, () => {
   console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
-//endpoints
+
+//Rutas
 app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);

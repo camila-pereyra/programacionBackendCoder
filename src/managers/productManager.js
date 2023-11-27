@@ -1,8 +1,10 @@
 import fs from "fs";
+import path from "path";
+import __dirname from "../utils.js";
 
 export default class ProductManager {
-  constructor(path) {
-    this.path = path;
+  constructor(pathFile) {
+    this.path = path.join(__dirname, `/files/${pathFile}`);
   }
 
   getProducts = async () => {
@@ -46,7 +48,7 @@ export default class ProductManager {
       status: true,
       stock: product.stock,
       category: product.category,
-      thumbnail: product.thumbnail || "",
+      thumbnail: product.thumbnail === undefined ? [] : [product.thumbnail],
     };
     productos.push(productAdd);
     await fs.promises.writeFile(
@@ -60,7 +62,6 @@ export default class ProductManager {
     const products = await this.getProducts();
     const found = products.find((product) => product.id === idProduct);
     if (found == undefined) {
-      console.log(`Product id ${idProduct} not found`);
       return undefined;
     } else {
       return found;
@@ -71,7 +72,6 @@ export default class ProductManager {
     const productos = await this.getProducts();
     const found = productos.find((product) => product.code === codeProduct);
     if (found === undefined) {
-      console.log(`Product code ${codeProduct} not found`);
       return undefined;
     } else {
       return found;
@@ -79,39 +79,49 @@ export default class ProductManager {
   };
 
   deleteProduct = async (idProduct) => {
-    console.log(`Delete product id.${idProduct}...`);
     const products = await this.getProducts();
     const index = products.findIndex((p) => p.id === idProduct);
-    if (index !== -1) {
-      products.splice(index, 1);
-      await fs.promises.writeFile(
-        this.path,
-        JSON.stringify(products, null, "\t")
-      );
-    } else {
-      console.log(
-        `The product id.${idProduct} that you want to delete does not exist`
-      );
+    if (index === -1) {
+      return {
+        error: `El producto id.${idProduct} no existe`,
+      };
     }
+    products.splice(index, 1);
+    await fs.promises.writeFile(
+      this.path,
+      JSON.stringify(products, null, "\t")
+    );
     return products;
   };
 
   updateProduct = async (idProduct, product) => {
-    console.log(`Update product id.${idProduct}...`);
     const products = await this.getProducts();
     const index = products.findIndex((p) => p.id === idProduct);
-    if (index !== -1) {
-      const productUpdate = { ...products[index], ...product };
-      products[index] = productUpdate;
-      await fs.promises.writeFile(
-        this.path,
-        JSON.stringify(products, null, "\t")
-      );
-    } else {
-      console.log(
-        `The product id.${idProduct} you want to modify does not exist`
-      );
+    if (index === -1) {
+      return {
+        error: `El producto id.${idProduct} no existe`,
+      };
     }
+    const arrThumbnail = [...products[index].thumbnail];
+    if (product.thumbnail !== undefined) {
+      arrThumbnail.push(product.thumbnail);
+    }
+    const prodUpdate = {
+      id: products[index].id,
+      tittle: product.tittle || products[index].tittle,
+      description: product.description || products[index].description,
+      code: product.code || products[index].code,
+      price: product.price || products[index].price,
+      status: product.status || products[index].status,
+      stock: product.stock || products[index].stock,
+      category: product.category || products[index].category,
+      thumbnail: arrThumbnail,
+    };
+    products[index] = prodUpdate;
+    await fs.promises.writeFile(
+      this.path,
+      JSON.stringify(products, null, "\t")
+    );
     return products;
   };
 }

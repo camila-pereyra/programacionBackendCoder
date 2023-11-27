@@ -1,0 +1,79 @@
+[
+	{
+		"id": 1,
+		"tittle": "Yerba",
+		"description": "Mate",
+		"code": 1000,
+		"price": 1100,
+		"status": true,
+		"stock": 20,
+		"category": "Almacen",
+		"thumbnail": [
+			"Foto1",
+			"Foto2",
+			"Foto3"
+		]
+	},
+	{
+		"id": 2,
+		"tittle": "Vino",
+		"description": "Blanco",
+		"code": 1001,
+		"price": 800,
+		"status": true,
+		"stock": 20,
+		"category": "Almacen",
+		"thumbnail": [
+			"Foto1",
+			"Foto2"
+		]
+	},
+	{
+		"id": 3,
+		"tittle": "Galletitas",
+		"description": "Dulces",
+		"code": 1002,
+		"price": 500,
+		"status": true,
+		"stock": 50,
+		"category": "Almacen",
+		"thumbnail": [
+			"Foto1"
+		]
+	},
+	{
+		"id": 4,
+		"tittle": "Galleta",
+		"description": "Agua",
+		"code": 1005,
+		"price": 800,
+		"status": true,
+		"stock": 10,
+		"category": "Almacen",
+		"thumbnail": []
+	},
+	{
+		"id": 6,
+		"tittle": "Chicles",
+		"description": "Menta",
+		"code": 5001,
+		"price": 230,
+		"status": true,
+		"stock": 200,
+		"category": "Kiosco",
+		"thumbnail": [
+			"Foto1"
+		]
+	},
+	{
+		"id": 7,
+		"tittle": "Manzana",
+		"description": "Verde",
+		"code": 2001,
+		"price": 900,
+		"status": true,
+		"stock": 20,
+		"category": "verduleria",
+		"thumbnail": []
+	}
+]
