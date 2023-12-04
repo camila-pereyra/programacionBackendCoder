@@ -1,0 +1,22 @@
+<div>
+    <h1>Productos</h1>
+    {{#if existProducts}}
+    <h2>Lista de productos</h2>
+    {{#each products}}
+    <div>
+        <p><strong>ID: </strong>{{id}}</p>
+        <p><strong>Titulo:</strong>{{tittle}}</p>
+        <p><strong>Descripcion: </strong>{{description}}</p>
+        <p><strong>Codigo: </strong>{{code}}</p>
+        <p><strong>Precio: </strong>{{price}}</p>
+        <p><strong>Estado: </strong>{{status}}</p>
+        <p><strong>Stock: </strong>{{stock}}</p>
+        <p><strong>Categoria: </strong>{{category}}</p>
+        <p><strong>Imagenes: </strong>{{thumbnail}}</p>
+        <hr>
+    </div>
+    {{/each}}
+    {{else}}
+    <h2>Aun no hay productos</h2>
+    {{/if}}
+</div>
