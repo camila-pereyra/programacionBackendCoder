@@ -1,0 +1,42 @@
+<form id="formProduct">
+    <div>
+        <label for="tittle">Titulo</label>
+        <input type="text" name="tittle" id="tittle">
+    </div>
+    <div>
+        <label for="description">Descripcion</label>
+        <input type="text" name="description" id="description" required="required">
+    </div>
+    <div>
+        <label for="code">Codigo</label>
+        <input type="text" name="code" id="code" required="required">
+    </div>
+    <div>
+        <label for="price">Precio</label>
+        <input type="number" name="price" id="price" required="required">
+    </div>
+    <div>
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" id="stock" required="required">
+    </div>
+    <div>
+        <label for="category">Categoria</label>
+        <input type="text" name="category" id="category" required="required">
+    </div>
+    <div>
+        <label for="thumbnail">Imagen/es</label>
+        <input type="file" name="thumbnail" id="thumbnail">
+    </div>
+    <div>
+        <button type="submit" id="buttonSubmit">Enviar</button>
+    </div>
+</form>
+
+<div id="listProducts"></div>
+
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

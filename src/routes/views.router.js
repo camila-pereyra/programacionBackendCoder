@@ -10,5 +10,7 @@ router.get("/", async (req, res) => {
     res.render("home", { products, existProducts: true });
   }
 });
-
+router.get("/realtimeproducts", async (req, res) => {
+  res.render("realTimeProducts");
+});
 export default router;

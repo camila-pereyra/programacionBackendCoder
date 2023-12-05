@@ -4,16 +4,19 @@
     <h2>Lista de productos</h2>
     {{#each products}}
     <div>
-        <p><strong>ID: </strong>{{id}}</p>
-        <p><strong>Titulo:</strong>{{tittle}}</p>
-        <p><strong>Descripcion: </strong>{{description}}</p>
-        <p><strong>Codigo: </strong>{{code}}</p>
-        <p><strong>Precio: </strong>{{price}}</p>
-        <p><strong>Estado: </strong>{{status}}</p>
-        <p><strong>Stock: </strong>{{stock}}</p>
-        <p><strong>Categoria: </strong>{{category}}</p>
-        <p><strong>Imagenes: </strong>{{thumbnail}}</p>
-        <hr>
+        <ul>
+            <li>
+                <strong>ID: </strong>{{id}}
+                <strong>Titulo:</strong>{{tittle}}
+                <strong>Descripcion: </strong>{{description}}
+                <strong>Codigo: </strong>{{code}}
+                <strong>Precio: </strong>{{price}}
+                <strong>Estado: </strong>{{status}}
+                <strong>Stock: </strong>{{stock}}
+                <strong>Categoria: </strong>{{category}}
+                <strong>Imagenes: </strong>{{thumbnail}}
+            </li>
+        </ul>
     </div>
     {{/each}}
     {{else}}
