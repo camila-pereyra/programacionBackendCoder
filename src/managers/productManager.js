@@ -48,7 +48,10 @@ export default class ProductManager {
       status: true,
       stock: product.stock,
       category: product.category,
-      thumbnail: product.thumbnail === undefined ? [] : [product.thumbnail],
+      thumbnail:
+        product.thumbnail === undefined || product.thumbnail === ""
+          ? []
+          : [product.thumbnail],
     };
     productos.push(productAdd);
     await fs.promises.writeFile(
@@ -60,7 +63,9 @@ export default class ProductManager {
 
   getProductById = async (idProduct) => {
     const products = await this.getProducts();
-    const found = products.find((product) => product.id === idProduct);
+    const found = products.find(
+      (product) => product.id === parseInt(idProduct)
+    );
     if (found == undefined) {
       return undefined;
     } else {
@@ -70,7 +75,9 @@ export default class ProductManager {
 
   getProductByCode = async (codeProduct) => {
     const productos = await this.getProducts();
-    const found = productos.find((product) => product.code === codeProduct);
+    const found = productos.find(
+      (product) => product.code === parseInt(codeProduct)
+    );
     if (found === undefined) {
       return undefined;
     } else {

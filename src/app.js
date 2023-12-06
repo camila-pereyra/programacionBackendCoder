@@ -5,28 +5,30 @@ import { engine } from "express-handlebars";
 import __dirname from "./utils.js";
 import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io";
+import ProductManager from "./managers/productManager.js";
 
 const PORT = 8080;
 const app = express();
 const httpServer = app.listen(PORT, () => {
   console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
+const productManager = new ProductManager("products.json");
 
 const socketServer = new Server(httpServer);
+
 //ponemos el socket "a que escuche" (configuramos el servidor para que escuche cualquier evento)
 socketServer.on("connection", async (socket) => {
   console.log("Cliente conectado con id: " + socket.id);
-  socket.on("message", (data) => console.log(data));
-  socket.on("enviar", (data) => console.log(data));
-  socket.emit("evento_para_mi", "Bienvenido usuario!");
-  socket.broadcast.emit(
-    "evento_NO_para_mi",
-    "Se ha conectado un nuevo cliente, saludalo!"
-  );
-  socketServer.emit(
-    "evento_para_todos",
-    "Recuerden respetar las politicas de la web"
-  );
+  const products = await productManager.getProducts();
+  socket.emit("viewProducts", products);
+  socket.on("addProduct", (data) => {
+    const resultAdd = productManager.addProduct(data);
+    socket.emit("viewProducts", resultAdd);
+  });
+  socket.on("deleteProduct", (data) => {
+    const resultDelete = productManager.deleteProduct(data);
+    socket.emit("viewProducts", resultDelete);
+  });
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

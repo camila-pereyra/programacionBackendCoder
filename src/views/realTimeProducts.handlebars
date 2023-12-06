@@ -1,3 +1,5 @@
+<h1>Productos</h1>
+<h2>Agregar producto</h2>
 <form id="formProduct">
     <div>
         <label for="tittle">Titulo</label>
@@ -8,35 +10,39 @@
         <input type="text" name="description" id="description" required="required">
     </div>
     <div>
-        <label for="code">Codigo</label>
-        <input type="text" name="code" id="code" required="required">
+        <label for="code">Codigo (numerico)</label>
+        <input type="number" name="code" id="code" min="1" required="required">
     </div>
     <div>
         <label for="price">Precio</label>
-        <input type="number" name="price" id="price" required="required">
+        <input type="number" name="price" id="price" min="1" required="required">
     </div>
     <div>
         <label for="stock">Stock</label>
-        <input type="number" name="stock" id="stock" required="required">
+        <input type="number" name="stock" id="stock" min="1" required="required">
     </div>
     <div>
         <label for="category">Categoria</label>
         <input type="text" name="category" id="category" required="required">
     </div>
     <div>
-        <label for="thumbnail">Imagen/es</label>
-        <input type="file" name="thumbnail" id="thumbnail">
+        <label for="thumbnail">Ruta de imagen</label>
+        <input type="text" name="thumbnail" id="thumbnail">
     </div>
     <div>
         <button type="submit" id="buttonSubmit">Enviar</button>
     </div>
 </form>
-
+<h2>Lista de productos en tiempo real</h2>
 <div id="listProducts"></div>
 
+<h2>Eliminar producto</h2>
+<div id="inputDeleteProduct">
+    <label for="inputDelete_id">Ingrese el ID del elemento a eliminar</label>
+    <input type="number" name="inputDelete_id" id="inputDelete_id" min="1">
+    <button type="button" id="buttonDelete">Borrar producto</button>
 
-
-
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>
